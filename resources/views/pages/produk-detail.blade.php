@@ -1,4 +1,4 @@
-@extends('halaman.page')
+@extends('layouts.app')
 
 @section('content')
 

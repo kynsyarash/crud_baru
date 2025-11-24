@@ -10,6 +10,15 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+// Form Components
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
+
+// Column
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+
 class ProdukResource extends Resource
 {
     protected static ?string $model = Produk::class;
@@ -21,28 +30,29 @@ class ProdukResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_produk')
+                TextInput::make('nama_produk')
                     ->label('Nama Produk')
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\FileUpload::make('path_img')
+                FileUpload::make('path_img')
                     ->label('Gambar Produk')
+                    ->disk('public')
                     ->directory('produk')  
                     ->image()
                     ->imageEditor()
                     ->downloadable()
                     ->previewable(),
 
-                Forms\Components\TextInput::make('judul')
+                TextInput::make('judul')
                     ->required()
                     ->maxLength(255),
 
-                Forms\Components\Textarea::make('deskripsi')
+                Textarea::make('deskripsi')
                     ->columnSpanFull()
                     ->required(),
 
-                Forms\Components\TextInput::make('harga')
+                TextInput::make('harga')
                     ->numeric()
                     ->prefix('Rp')
                     ->required(),
@@ -53,28 +63,28 @@ class ProdukResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('path_img')
+                ImageColumn::make('path_img')
                     ->label('Gambar')
+                    ->disk('public')
                     ->square(),
 
-                Tables\Columns\TextColumn::make('nama_produk')
+                TextColumn::make('nama_produk')
                     ->label('Nama Produk')
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('judul')
+                TextColumn::make('judul')
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('harga')
+                TextColumn::make('harga')
                     ->label('Harga')
                     ->money('IDR')
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Dibuat')
-                    ->dateTime()
-                    ->sortable(),
+                TextColumn::make('deskripsi')
+                    ->label('Deskripsi')
+                    ->limit(50),
             ])
             ->filters([])
             ->actions([

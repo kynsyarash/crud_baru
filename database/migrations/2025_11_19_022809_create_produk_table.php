@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('path_img');
             $table->string('deskripsi');
             $table->decimal('harga', 10, 2);
-            
         });
     }
 
