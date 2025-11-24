@@ -1,0 +1,1 @@
+salso anda saat ini adalah : Rp {{ number_format($saldo) }}
