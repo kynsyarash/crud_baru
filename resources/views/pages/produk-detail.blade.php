@@ -25,7 +25,10 @@
                 Rp. {{ number_format($produk->harga, 0, ',', '.') }}
             </div>
 
-            <a href="/produk" class="inline-block mt-6 px-6 py-2 bg-[#354024] text-white rounded-xl">
+            <a href="{{ route('produk.form', $produk->id) }}" class="inline-block mt-6 px-6 py-2 bg-[#354024] text-white rounded-xl">
+                Beli Sekarang
+            </a>
+            <a href="{{ route('produk.index') }}" class="inline-block mt-6 px-6 py-2 bg-[#354024] text-white rounded-xl">
                 Kembali
             </a>
         </div>
